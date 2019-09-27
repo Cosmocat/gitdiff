@@ -1,0 +1,41 @@
+.result-header {
+    width: 100%;
+    background-color: rgb(230, 230, 230);
+    padding: 10px 20px;
+    height: 50px;
+    border: 1px solid #DFE1E6;
+}
+
+table {
+    width: 100%;
+    border-bottom: 1px solid #DFE1E6;
+    margin-bottom: 15px;
+}
+
+table td {
+    border-left: 1px solid #DFE1E6;
+    border-right: 1px solid #DFE1E6;
+}
+
+.added {
+    background-color: #ddffdd
+}
+
+.removed {
+    background-color: #fee8e9
+}
+
+.oldlinenum {
+    padding-left: 50px;
+    padding-right: 5px;
+    text-align: right;
+}
+
+.newlinenum {
+    text-align: center;
+}
+
+.linechange {
+    width: 20px;
+    text-align: center;
+}

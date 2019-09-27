@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <label for="form">Paste your diff git here:</label>   
+    <form class='my-ajax-form form-text' method='POST' action='/join/' data-url='{{ request.build_absolute_uri|safe }}'>
+        {% csrf_token %}
+        {{form.as_p|safe}}
+        <button  class="btn btn-primary" type='submit' style="margin-bottom: 15px;">Parse</button>
+    </form>
+{% endblock content %}

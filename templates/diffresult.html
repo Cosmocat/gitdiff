@@ -1,0 +1,44 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+{% for result in results %}
+<!-- <div class="result-header">
+   
+</div> -->
+<table class="result-table">
+    <thead>
+    <tr>
+        <th class="result-header" colspan="4">
+            <span class="filename">{{ result.header }}</span>
+            {% if result.type == 'added' %}<span class="badge badge-success">{{result.type|upper}}</span>{% endif %}
+            {% if result.type == 'deleted' %}<span class="badge badge-danger">{{result.type|upper}}</span>{% endif %}
+            {% if result.type == 'modified' %}<span class="badge badge-primary">{{result.type|upper}}</span>{% endif %}
+            {% if result.type == 'renamed' %}<span class="badge badge-success">{{result.type|upper}}</span>{% endif %}
+        </th>
+    </tr>
+    </thead>
+    {% for line in result.content %}
+    <tr class="{% if line.linechangeInd == '+' %}added{% endif %} {% if line.linechangeInd == '-' %}removed{% endif %}" >
+        {% if result.type == 'added'%}
+        <td width="12%" class="oldlinenum"></td>
+        <td width="5%" class="newlinenum">{{ forloop.counter }}</td>
+        {% endif %}
+        {% if result.type == 'deleted' %}
+        <td width="12%" class="oldlinenum">{{ forloop.counter }}</td>
+        <td width="5%" class="newlinenum"></td>
+        {% endif %}
+        {% if result.type == 'modified' or result.type == 'renamed' %}
+        <td width="12%" class="oldlinenum">{{ line.linenumOld }}</td>
+        <td width="5%" class="newlinenum">{{ line.linenumNew }}</td>
+        {% endif %}
+        <td width="3%" class="linechange">
+            {% if line.linechangeInd == '-' %}-{% endif %}
+            {% if line.linechangeInd == '+' %}+{% endif %}
+        </td>
+        <td width="80%">{{ line.lineContent }}</td>
+    </tr>
+    {% if line.error %} <tr><td style="width:100%; padding: 10px 20px;">{{ line.error }}</td></tr>{% endif %}
+    {% endfor %}
+</table>
+{% endfor %}
